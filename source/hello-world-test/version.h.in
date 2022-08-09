@@ -1,0 +1,127 @@
+#pragma once
+
+// CMake Generated File (see 'version.h.in')
+// ----------------------------------------------------------------------------------------
+// Copyright (c) William Berry
+// email: wberry.cpp@gmail.com
+// github: https://github.com/wsberry
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// You may freely use this source code and its projects in compliance with the License.
+//
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License src distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ----------------------------------------------------------------------------------------
+
+#define PROJECT_NAME "@PROJECT_NAME@"
+#define PROJECT_VER  "@PROJECT_VERSION@"
+#define PROJECT_VER_MAJOR "@PROJECT_VERSION_MAJOR@"
+#define PROJECT_VER_MINOR "@PROJECT_VERSION_MINOR@"
+#define PROJECT_VER_PATCH "@PROJECT_VERSION_PATCH@"
+
+#include <iostream>
+#include <slx/compiler-support.hh>
+
+namespace slx
+{
+    inline constexpr auto product_version() { return PROJECT_VER; }
+    inline constexpr auto product_name(){ return PROJECT_NAME; }
+    inline constexpr auto product_about() { return PROJECT_NAME  " v" PROJECT_VER; }
+    inline void product_dialog()
+    {
+#ifdef USE_PORTABLE_DIALOGS
+        pfd::message(
+
+           // Caption
+           "About " PROJECT_NAME  " v" PROJECT_VER,
+
+           // Body
+           " Copyright (c) William Berry"
+           "\n email: wberry.cpp@gmail.com"
+           "\n github: https://github.com/wsberry"
+           "\n"
+           "\n Licensed under the Apache License, Version 2.0 (the \"License\")"
+           "\n See: http://www.apache.org/licenses/LICENSE-2.0",
+
+           // Options
+           pfd::choice::ok,
+           pfd::icon::warning
+
+        // 'result()' forces synchronous behavior.
+        //
+        ).result();
+
+#else
+        std::cout
+           <<
+              "About " PROJECT_NAME  " v" PROJECT_VER
+              "\nCopyright (c) William Berry"
+              "\n email: wberry.cpp@gmail.com"
+              "\n github: https://github.com/wsberry"
+              "\n"
+              "\n Licensed under the Apache License, Version 2.0 (the \"License\")"
+              "\n You may freely use this source code and its projects in compliance with the License."
+              "\n"
+              "\n You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0"
+           << std::endl;
+#endif
+    }
+
+// TODO:
+enum class system_os_t
+{
+    os_undefined,
+    os_apple_mac,
+    os_apple_ios,
+    os_apple_ios_sim,
+    os_linux,
+    os_linux_android,
+    os_win32,
+    os_win64
+};
+
+// TODO: Implementation is incomplete
+#if defined(WIN32)
+#   ifdef _WIN64
+        constexpr system_os_t system_os = system_os_t::os_win64;
+        constexpr const auto os_system_str = "os_win64";
+#   else
+        constexpr system_os_t system_os = system_os_t::os_win32;
+        constexpr const auto os_system_str = "os_win32";
+#   endif
+#elif __APPLE__
+#   include <TargetConditionals.h>
+#   if TARGET_IPHONE_SIMULATOR
+        // iOS, tvOS, or watchOS Simulator
+#   elif TARGET_OS_MACCATALYST
+        // Mac's Catalyst (ports iOS API into Mac, like UIKit).
+#   elif TARGET_OS_IPHONE
+        // iOS, tvOS, or watchOS device
+#   elif TARGET_OS_MAC
+        constexpr system_os_t system_os = system_os_t::os_apple_mac;
+        constexpr const auto os_system_str = "os_apple_mac";
+#   else
+    constexpr system_os_t system_os = system_os_t::os_undefined;
+#   endif
+#endif
+
+#if __ANDROID__
+    constexpr system_os_t system_os = system_os_t::os_android;
+#elif __linux__
+    constexpr system_os_t system_os = system_os_t::os_linux;
+    constexpr const auto os_system_str = "os_linux";
+#elif __unix__
+// Unix
+#elif defined(_POSIX_VERSION)
+// POSIX
+#else
+
+#endif
+
+
+}

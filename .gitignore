@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------------------------
+# Maintainer: Bill Berry
+# email: wberry.cpp@gmail.com
+# github: https://github.com/wsberry
+# -----------------------------------------------------------------------------------------
+#
+# Help for modifying this file:
+#
+# https://www.w3schools.com/git/git_ignore.asp#:~:text=Here%20are%20the%20general%20rules%20for%20matching%20patterns,no%20mat%20...%20%2016%20more%20rows%20
+/.git/*
+**/_bin
+**/_build
+**/_data
+**/_MACOSX
+*.build
+*.cache
+*.mode1v3
+*.ncb
+*.pbxuser
+*.pyc
+*.suo
+*.user
+*.xccheckout
+*.xcuserstate
+.conan/test_package/build
+.DS_Store
+.idea
+.vs
+.vscode
+bazel-*
+benchmark-dir
+Breakpoints.xcbkptlist
+Build
+build-fuzzers
+CatchSelfTest.xcscheme
+cmake-build-*
+compile_commands.json
+Debug
+debug-build
+DerivedData
+docs/doxygen
+msvc-sln*
+projects/Generated
+Release
+xcuserdata
+#
+# Files that may be created when running this project's application.
+#
+env.txt
+os_win64.log
+os_linux.log
+os_apple_mac.log
