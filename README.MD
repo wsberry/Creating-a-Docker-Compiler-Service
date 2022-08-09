@@ -11,7 +11,7 @@ This project implements a simple C++ project using CMake that may be compiled fr
 
 The code demonstrated in the hello-world-test project provides a sample of a fold expression and therefore does require C++ 20 when compiling on your local machine.
 
-So far this has been tested local machines of Windows 10+, macOS Moterey, Ubuntu 22.04 LTS, and, on Alpine Linux run within a Docker Container (described here).
+So far this has been tested on Windows 10+, macOS Moterey 12+, Ubuntu 22.04 LTS, and, on Alpine Linux (latest) using a Docker container (described here).
 
 ### Prerequisites
 
