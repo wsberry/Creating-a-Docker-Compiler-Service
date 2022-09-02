@@ -2,6 +2,8 @@
   <img alt="SLX" src=".images/slx-logo.png" style="zoom: 75%;"/></div><div class="column"><h3><font color='#1976d2'>Creating a Docker Compiler Service</font></h3></div></div>
 wsberry@gmail.com
 
+##### Apache License 2.0
+
 
 ### Overview
 
@@ -28,13 +30,23 @@ Bash 3.2.57 is the default version that comes with the macOS. The scripts provid
 
 To install the latest version of bash on the macOS run `./scripts/install-bash-mac-os.sh` to update your system. On some systems when cloning this repository, the 'executable' attribute may have been removed. Therefore, you may need to run `{sudo} chmod +x install-bash-mac-os.sh` to enable the script to be run as an executable again in bash:
 ~~~bash
-$ sudo chmod +x ./scripts/install-bash-mac-os.sh
+$ chmod +x ./scripts/install-bash-mac-os.sh
 $ ./scripts/install-bash-mac-os.sh
 ~~~
 
 ------
 
 ### Building the Alpine/Clang 14.0 Build Service
+
+If you have the prerequisites installed you may run the following from a terminal: 
+
+~~~bash
+ cd compiler-services
+ ./create-docker-service -b
+ ./build-project.sh -bi
+~~~
+
+#### Details:
 
 The Dockerfile, `./compiler-services/alpine-latest-clang-14.0-build-service.dockerfile`,  contains the commands to create a Docker image called '<font color='#1976d2'>alpine-latest-clang-14.0-build-service</font>':
 
